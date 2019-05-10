@@ -1,24 +1,295 @@
-<!DOCTYPE html>
-<html class="no-js">
-	<head>
-		<title>Preloadr 0.1.0</title>
-		<link href="style.css" rel="stylesheet">
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Preloadr 0.2.0</title>
+    
+    <!-- <link href="preloadr.css" rel="stylesheet"> -->
+    <style>
+      .no-js {
+        visibility: hidden;
+        opacity: 0;
+      }
+      .js {
+        visibility: visible;
+        opacity: 1;
+      }
+      body.loading {
+        background-color: purple;
+      }
+      #loader {
+        position: fixed;
+        z-index: 1100;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: purple;
+        transition: opacity 500ms;
+        opacity: 0;
+      }
+      #loader.visible {
+        opacity: 1;
+      }
+      #loader img {
+        display:block;
+        width: 400px;
+        height: 356px;
+        position: relative;
+        margin: auto;
+        top: 50%;
+        margin-top: -178px;
+        animation: appear 1s, 2s floating infinite ease-in-out;
+        visibility: visible;
+        opacity: 1;  
+      }
+      #loader img.hidden {
+        visibility: hidden;
+        opacity: 0;
+      }
+      #loader img.removed {
+        display: none;
+      }
+      #wrapper {
+        visibility: visible;
+        opacity: 1;
+      }
+      #wrapper.hidden {
+        visibility: hidden;
+        opacity: 0;
+      }
+      img {
+        max-width: 100%;
+      }
+      @keyframes appear {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes floating {
+        from {
+          transform: translate(0, 0px);
+        }
+        50% {
+          transform: translate(0, -25px);
+        }
+        to {
+          transform: translate(0, 0px);
+        }
+      }
+    </style>
+    
+    <link href="css/bootstrap.min.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
 		<script>
-			(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
-		</script>		
-	</head>
-	<body class="loading">
+			(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
+      
+      /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+      /* This file is meant as a standalone workflow for
+      - testing support for link[rel=preload]
+      - enabling async CSS loading in browsers that do not support rel=preload
+      - applying rel preload css once loaded, whether supported or not.
+      */
+      (function( w ){
+        "use strict";
+        // rel=preload support test
+        if( !w.loadCSS ){
+          w.loadCSS = function(){};
+        }
+        // define on the loadCSS obj
+        var rp = loadCSS.relpreload = {};
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function(){
+          var ret;
+          try {
+            ret = w.document.createElement( "link" ).relList.supports( "preload" );
+          } catch (e) {
+            ret = false;
+          }
+          return function(){
+            return ret;
+          };
+        })();
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function( link ){
+          // remember existing media attr for ultimate state, or default to 'all'
+          var finalMedia = link.media || "all";
+
+          function enableStylesheet(){
+            link.media = finalMedia;
+          }
+
+          // bind load handlers to enable media
+          if( link.addEventListener ){
+            link.addEventListener( "load", enableStylesheet );
+          } else if( link.attachEvent ){
+            link.attachEvent( "onload", enableStylesheet );
+          }
+
+          // Set rel and non-applicable media type to start an async request
+          // note: timeout allows this to happen async to let rendering continue in IE
+          setTimeout(function(){
+            link.rel = "stylesheet";
+            link.media = "only x";
+          });
+          // also enable media after 3 seconds,
+          // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+          setTimeout( enableStylesheet, 3000 );
+        };
+
+        // loop through link elements in DOM
+        rp.poly = function(){
+          // double check this to prevent external calls from running
+          if( rp.support() ){
+            return;
+          }
+          var links = w.document.getElementsByTagName( "link" );
+          for( var i = 0; i < links.length; i++ ){
+            var link = links[ i ];
+            // qualify links to those with rel=preload and as=style attrs
+            if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+              // prevent rerunning on link
+              link.setAttribute( "data-loadcss", true );
+              // bind listeners to toggle media back
+              rp.bindMediaToggle( link );
+            }
+          }
+        };
+
+        // if unsupported, run the polyfill
+        if( !rp.support() ){
+          // run once at least
+          rp.poly();
+
+          // rerun poly on an interval until onload
+          var run = w.setInterval( rp.poly, 500 );
+          if( w.addEventListener ){
+            w.addEventListener( "load", function(){
+              rp.poly();
+              w.clearInterval( run );
+            } );
+          } else if( w.attachEvent ){
+            w.attachEvent( "onload", function(){
+              rp.poly();
+              w.clearInterval( run );
+            } );
+          }
+        }
+
+
+        // commonjs
+        if( typeof exports !== "undefined" ){
+          exports.loadCSS = loadCSS;
+        }
+        else {
+          w.loadCSS = loadCSS;
+        }
+      }( typeof global !== "undefined" ? global : this ) );
+
+		</script>
+  </head>
+  <body class="loading">
     <div id="loader" class="visible">
         <img class="hidden" src="400x356.png">
     </div>
-		<div id="wrapper" class="hidden">
-      <a href="index.html">index</a>
-      <img src="1.jpg">
-      <img src="2.jpg">
-      <img src="3.jpg">
-      <img src="4.jpg">
-      <img src="5.jpg">
-		</div>
-		<script src="main.js"></script>
-	</body>
+<div id="wrapper" class="hidden">    
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="index.html">Carousel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="index-2.html">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">
+
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="img"><img src="1.jpg" class="img-fluid"></div>
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <h1>Example headline.</h1>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="img"><img src="2.jpg" class="img-fluid"></div>
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>Another example headline.</h1>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="img"><img src="3.jpg" class="img-fluid"></div>
+            <div class="container">
+              <div class="carousel-caption text-right">
+                <h1>One more for good measure.</h1>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2017-2019 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+    </main>
+</div>
+  <script src="preloadr.js"></script>
+  <script src="js/jquery-3.3.1.slim.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
