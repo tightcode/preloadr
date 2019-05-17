@@ -1,9 +1,9 @@
-/* Preloadr 0.2.0 */
+/* Preloadr 0.2.1 */
 var loadr = document.querySelector("#loader");
 var loadrImg = document.querySelector("#loader img");
 var wrappr = document.querySelector("#wrapper");
 var preloadImg = new Image();
-preloadImg.src = "400x356.png";
+preloadImg.src = loadrImg.src;
 loadrImg.classList.add("removed");
 document.addEventListener("DOMContentLoaded", function() {
   document.body.classList.remove("loading");
