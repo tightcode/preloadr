@@ -1,4 +1,5 @@
-/* Preloadr 0.2.0 */
+/* Preloadr 0.2.2 */
+/* Critical CSS (for internal use) */
 .no-js {
   visibility: hidden;
   opacity: 0;
@@ -9,6 +10,7 @@
 }
 body.loading {
   background-color: purple;
+  overflow:hidden;
 }
 #loader {
   position: fixed;

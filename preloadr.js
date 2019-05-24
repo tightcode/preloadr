@@ -1,4 +1,4 @@
-/* Preloadr 0.2.1 */
+/* Preloadr 0.2.2 */
 var loadr = document.querySelector("#loader");
 var loadrImg = document.querySelector("#loader img");
 var wrappr = document.querySelector("#wrapper");
