@@ -1,0 +1,40 @@
+Preloadr
+
+What the project is for
+  Website preloader with loading image and transition effects integrated technique utilizing JavaScript image object caching, content preloading, critical CSS prioritizing and Paul Irish's classic Avoiding the FOUC v3.0 fix
+Built with
+  HTML/CSS/JavaScript
+  loadCSS (optional extended browser support)
+  Bootstrap 4 (optional example template)
+How to configure and install it
+	Markup
+		1. Add no-js class to html element
+    2. Add critical CSS to head
+    3. Preload external stylesheets ("rel" "as" and "onload" attributes)
+    4. Add loadCSS script to head
+    5. Add .loading class to body
+    6. Add #loader element to top of body
+    7. Wrap content below #loader element in #wrapper element
+    8. Link to preloadr.js
+    9. Edit loading image source/dimensions in critical CSS and preloadr.js
+
+An example of how to use it or get it running
+  https://tightcode.github.io/preloadr
+  Visit, reload the page or follow the first two links in the navbar
+
+The license that the project is offered under
+	The MIT License
+
+Contributing
+	Author: tightcode
+			Github: https://github.com/tightcode
+			Email: tightcodedev@gmail.com
+
+Version History / Release Notes
+	Note:
+		-README added in v0.2.3
+	0.2.3
+    -updated comments
+    -added README
+    -began version history
+    -minor update
