@@ -7,16 +7,16 @@ Built with
   loadCSS (optional extended browser support)
   Bootstrap 4 (optional example template)
 How to configure and install it
-	Markup
-		1. Add no-js class to html element
-    2. Add critical CSS to head
-    3. Preload external stylesheets ("rel" "as" and "onload" attributes)
-    4. Add loadCSS script to head
-    5. Add .loading class to body
-    6. Add #loader element to top of body
-    7. Wrap content below #loader element in #wrapper element
-    8. Link to preloadr.js
-    9. Edit loading image source/dimensions in critical CSS and preloadr.js
+  1. Add no-js class to html element
+  2. Add critical CSS to head
+  3. Preload external stylesheets ("rel" "as" and "onload" attributes)
+  4. Add Avoiding the FOUC v3.0 fix script/styles to head
+  5. Add loadCSS script to head
+  6. Add .loading class to body
+  7. Add #loader element to top of body
+  8. Wrap content below #loader element in #wrapper element
+  9. Link to preloadr.js
+  10. Edit loading image source/dimensions in critical CSS and preloadr.js
 
 An example of how to use it or get it running
   https://tightcode.github.io/preloadr
