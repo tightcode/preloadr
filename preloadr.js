@@ -1,4 +1,4 @@
-/* Preloadr 0.2.3 */
+/* Preloadr 0.2.4 ( https://github.com/tightcode/preloadr ) */
 var loadr = document.querySelector("#loader");
 var loadrImg = document.querySelector("#loader img");
 var wrappr = document.querySelector("#wrapper");
@@ -16,11 +16,12 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 preloadImg.onload = function() {
+  document.body.classList.remove("overflow");
   loadrImg.classList.remove("removed", "hidden");
 };
 window.onload = function() {
   loadr.classList.remove("visible");
   setTimeout(function() {
     document.body.removeChild(loadr);
-  }, 500);
+  }, 3000);
 };

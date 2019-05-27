@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Preloadr 0.2.3</title>
+    <title>Preloadr 0.2.4</title>
     
     <!-- Critical CSS -->
     <style>
@@ -16,8 +16,13 @@
         visibility: visible;
         opacity: 1;
       }
+      body {
+        overflow:auto;
+      }
       body.loading {
         background-color: purple;
+      }
+      body.overflow {
         overflow:hidden;
       }
       #loader {
@@ -30,7 +35,7 @@
         width: 100%;
         height: 100%;
         background-color: purple;
-        transition: opacity 500ms;
+        transition: opacity 3s;
         opacity: 0;
       }
       #loader.visible {
@@ -204,7 +209,7 @@
 
 		</script>
   </head>
-  <body class="loading">
+  <body class="loading overflow">
     <div id="loader" class="visible">
       <img class="hidden" src="400x356.png">
     </div>
