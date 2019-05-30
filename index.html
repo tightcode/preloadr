@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Preloadr 0.2.4</title>
+    <title>Preloadr 0.2.5</title>
     
     <!-- Critical CSS -->
     <style>
@@ -26,6 +26,7 @@
         overflow:hidden;
       }
       #loader {
+        pointer-events: none;
         position: fixed;
         z-index: 1100;
         left: 0;
@@ -39,6 +40,7 @@
         opacity: 0;
       }
       #loader.visible {
+        pointer-events: auto;
         opacity: 1;
       }
       #loader img {
