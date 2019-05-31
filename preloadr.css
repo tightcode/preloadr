@@ -1,4 +1,4 @@
-/* Preloadr 0.2.5 ( https://github.com/tightcode/preloadr ) */
+/* Preloadr 0.2.6 ( https://github.com/tightcode/preloadr ) */
 /* Critical CSS (for internal use) */
 .no-js {
   visibility: hidden;
@@ -37,15 +37,14 @@ body.overflow {
 }
 #loader img {
   display:block;
-  width: 400px;
-  height: 356px;
   position: relative;
   margin: auto;
   top: 50%;
   margin-top: -178px;
   animation: appear 1s, 2s floating infinite ease-in-out;
   visibility: visible;
-  opacity: 1;  
+  opacity: 1;
+  max-width: 100%;
 }
 #loader img.hidden {
   visibility: hidden;
@@ -61,9 +60,6 @@ body.overflow {
 #wrapper.hidden {
   visibility: hidden;
   opacity: 0;
-}
-img {
-  max-width: 100%;
 }
 @keyframes appear {
   0% {

@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Preloadr 0.2.5</title>
+    <title>Preloadr 0.2.6</title>
     
     <!-- Critical CSS -->
     <style>
@@ -45,15 +45,14 @@
       }
       #loader img {
         display:block;
-        width: 400px;
-        height: 356px;
         position: relative;
         margin: auto;
         top: 50%;
         margin-top: -178px;
         animation: appear 1s, 2s floating infinite ease-in-out;
         visibility: visible;
-        opacity: 1;  
+        opacity: 1;
+        max-width: 100%;
       }
       #loader img.hidden {
         visibility: hidden;
@@ -69,9 +68,6 @@
       #wrapper.hidden {
         visibility: hidden;
         opacity: 0;
-      }
-      img {
-        max-width: 100%;
       }
       @keyframes appear {
         0% {

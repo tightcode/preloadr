@@ -1,4 +1,4 @@
-/* Preloadr 0.2.5 ( https://github.com/tightcode/preloadr ) */
+/* Preloadr 0.2.6 ( https://github.com/tightcode/preloadr ) */
 var loadr = document.querySelector("#loader");
 var loadrImg = document.querySelector("#loader img");
 var wrappr = document.querySelector("#wrapper");
