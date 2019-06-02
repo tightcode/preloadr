@@ -12,7 +12,7 @@ How to configure and install it
   3. Preload external stylesheets ("rel" "as" and "onload" attributes)
   4. Add Avoiding the FOUC v3.0 fix script/styles to head
   5. Add loadCSS script to head
-  6. Add .loading class to body
+  6. Add .loading and .overflow classes to body
   7. Add #loader element to top of body
   8. Wrap content below #loader element in #wrapper element
   9. Link to preloadr.js
@@ -29,14 +29,3 @@ Contributing
 	Author: tightcode
 			Github: https://github.com/tightcode
 			Email: tightcodedev@gmail.com
-
-Version History / Release Notes
-	Note:
-		-README added in v0.2.3
-	0.2.4
-    update
-	0.2.3
-    -updated comments
-    -added README
-    -began version history
-    -minor update
